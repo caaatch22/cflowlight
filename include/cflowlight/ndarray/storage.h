@@ -24,7 +24,8 @@ class Storage {
   using const_iterator = Scalar const *;
 
   Storage() = default;
-  explicit Storage(size_t size) : data_(new Scalar[size]), size_(size) {}
+  explicit Storage(size_t size)
+      : data_(new(std::align_val_t(64)) Scalar[size]), size_(size) {}
   ~Storage() { delete[] data_; }
 
   Storage(Storage const &other) = delete;
