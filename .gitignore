@@ -1,0 +1,8 @@
+.vscode/
+build/
+
+perf.data
+perf.data.old
+
+todo.txt
+test.py
