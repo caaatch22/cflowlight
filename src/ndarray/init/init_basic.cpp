@@ -29,20 +29,6 @@ NDArray zeros(Shape const &shape, Dtype dtype) {
   }
 };
 
-#include <chrono>
-class [[nodiscard]] Timer {
- public:
-  Timer() noexcept : start(std::chrono::high_resolution_clock::now()) {}
-  [[nodiscard]] auto elapsed() const noexcept -> std::chrono::duration<double> {
-    const auto now = std::chrono::high_resolution_clock::now();
-    return std::chrono::duration<double>(now - start);
-  }
-  void reset() noexcept { start = std::chrono::high_resolution_clock::now(); }
-
- private:
-  std::chrono::time_point<std::chrono::high_resolution_clock> start;
-};
-
 NDArray randn(Shape const &shape) {
   NDArray res(shape, Dtype::f32());
   // static std::normal_distribution<float> dist(0.0f, 1.0f);
