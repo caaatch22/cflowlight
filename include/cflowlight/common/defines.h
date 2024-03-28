@@ -25,4 +25,11 @@ concept Iterable = requires(T t) {
   { t.size() } -> std::convertible_to<size_t>;
 };
 
+template <typename T, typename... U>
+concept is_any_of = (std::same_as<T, U> || ...);
+
+template <typename... T>
+concept optional_argument =
+    requires(T &&...) { requires(sizeof...(T) == 0 || sizeof...(T) == 1); };
+
 }  // namespace fl
